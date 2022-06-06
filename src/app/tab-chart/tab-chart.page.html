@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Chart</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-note mode="md">Start Date</ion-note>
+            <ion-datetime slot="end" displayFormat="DD MMM YYYY" [(ngModel)]="startDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-note mode="md">End Date</ion-note>
+            <ion-datetime slot="end" displayFormat="DD MMM YYYY" [(ngModel)]="endDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+        <ion-button expand="block" class="ion-padding button-log fs-15" color="warning" type="submit" (click)="reqDb()">
+          Filter
+        </ion-button>
+        <br>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <apx-chart
+    [series]="options.series"
+    [chart]="options.chart"
+    [xaxis]="options.xaxis"
+    [title]="options.title"
+  ></apx-chart>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-text-center copyright" style="font-family: cursive;">&copy;copyright Ari darmawan 2021</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

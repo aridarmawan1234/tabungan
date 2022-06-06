@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-card class="card-title">
+      <ion-card-header >
+        <ion-card-title class="ion-text-center">Jumlah Pemasukan</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content >
+        <ion-item class="card-title" *ngFor="let data of listTabungan">
+          <ion-label >{{data['nama']}}</ion-label>
+          <ion-label class="ion-text-right">Rp. {{data['uangFormat'] | number:'1.0-0'}}</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header class="card-title">
+        <ion-card-title class="ion-text-center card-title">Total Pemasukan</ion-card-title>
+        <br>
+        <ion-card-subtitle style="font-size: 25px;" class="ion-text-center">Rp. {{totalPemasukan | number:'1.0-0'}}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+    <br>
+    <ion-row>
+      <ion-col class="ion-text-center copyright" style="font-family: cursive;">&copy;copyright Ari darmawan 2021</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-item>
+        <ion-label>Dark Mode</ion-label>
+        <div *ngIf="global.getTheme() == false">
+          <ion-icon name="moon-outline" (click)="changeDarkMode(global.getTheme())" style="font-size: 25px;"></ion-icon>
+        </div>
+        <div *ngIf="global.getTheme() == true">
+          <ion-icon name="moon" (click)="changeDarkMode(global.getTheme())" style="font-size: 25px;"></ion-icon>
+        </div>
+      </ion-item>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,7 @@
+{
+  "name": "tabungan",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

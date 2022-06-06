@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start"  mode="md" >
+      <ion-button fill="clear" (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>add-tabungan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <form [formGroup]="tabungan" (ngSubmit)="send()">
+      <ion-item class="ion-padding">
+        <ion-label class="fs-13 fw-semi" position="stacked">Nama</ion-label>
+        <ion-input class="fs-14 grey" maxlength="20" palceholder="Nama Lengkap" formControlName="nama" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label class="fs-13 fw-semi">Tanggal</ion-label>
+        <ion-datetime slot="end" formControlName="tgl" placeholder="Tanggal" displayFormat="DD MMM YYYY"></ion-datetime>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label class="fs-13 fw-semi" position="stacked">Tabungan</ion-label>
+        <ion-input class="fs-14 grey" maxlength="10" formControlName="uang" type="text" inputmode="numeric" placeholder="Jumlah Uang">Rp.&nbsp;</ion-input>
+      </ion-item>
+      <ion-button expand="block" class="ion-padding button-log fs-15" color="warning" type="submit"
+      [disabled]="tabungan.invalid">
+      Send
+    </ion-button>
+    </form>
+  </ion-grid>
+</ion-content>

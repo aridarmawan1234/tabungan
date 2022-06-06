@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start"  mode="md" >
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="arrow-back-outline" (click)="dismiss()"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Tabungan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <form [formGroup]="editTabungan" (ngSubmit)="send()">
+      <ion-item class="ion-padding">
+        <ion-label class="fs-13 fw-semi" position="stacked">Nama</ion-label>
+        <ion-input class="fs-14 grey" maxlength="15" formControlName="namaLengkap" name="namaLengkap" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label class="fs-13 fw-semi">Tanggal</ion-label>
+        <ion-datetime slot="end" formControlName="tgl" displayFormat="DD MMM YYYY"></ion-datetime>
+      </ion-item>
+      <ion-item class="ion-padding">
+        <ion-label class="fs-13 fw-semi" position="stacked">Tabungan</ion-label>
+        <ion-input class="fs-14 grey" maxlength="7" formControlName="uang" type="text" inputmode="numeric">Rp.&nbsp;</ion-input>
+      </ion-item>
+      <ion-button expand="block" class="ion-padding button-log fs-15" color="warning" type="submit"
+      [disabled]="editTabungan.invalid">
+      Send
+    </ion-button>
+    </form>
+  </ion-grid>
+</ion-content>

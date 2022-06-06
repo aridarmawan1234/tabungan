@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Tabungan</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-no-padding">
+        <ion-col size="6" style="margin:auto;">
+          <ion-item>
+            <ion-note mode="md">Nama</ion-note>
+            <ion-select class="ion-no-margin ion-no-padding" [(ngModel)]="NamaFilter" slot="end" interface="action-sheet">
+              <ion-select-option value="ALL">ALL</ion-select-option>
+              <ion-select-option *ngFor="let acc of namaLengkap" [value]="acc">{{acc}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col class="ion-text-right ion-padding" style="font-size: 30px;" (click)="openPage()">
+          <ion-icon name="person-add-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-note mode="md">Start Date</ion-note>
+            <ion-datetime slot="end" displayFormat="DD MMM YYYY" [(ngModel)]="startDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-note mode="md">End Date</ion-note>
+            <ion-datetime slot="end" displayFormat="DD MMM YYYY" [(ngModel)]="endDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+        <ion-button expand="block" class="ion-padding button-log fs-15" color="warning" type="submit" (click)="requestDb()">
+          Filter
+        </ion-button>
+        <br>
+    </ion-grid>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-row class="ion-no-padding tableHeader">
+      <ion-col size="1" class="ion-text-center">No</ion-col>
+      <ion-col class="ion-text-center">Nama</ion-col>
+      <ion-col class="ion-text-center">Tanggal</ion-col>
+      <ion-col class="ion-text-center">Pemasukan</ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-sliding #itemSliding *ngFor="let data of listTabungan; let i = index; let odd=odd; let even=even" [ngClass]="{ odd: odd, even: even }" disabled="false">
+    <ion-item class="itemContent" mode="md" lines="full">
+      <ion-grid class="ion-no-padding">
+        <ion-row class="ion-item-responsive ion-padding">
+          <ion-col size="1" class="ion-text-center">{{data['No']}}</ion-col>
+          <ion-col class="ion-text-center">{{data['nama']}}</ion-col>
+          <ion-col class="ion-text-center">{{data['tanggalFormat']}}</ion-col>
+          <ion-col class="ion-text-right">Rp.{{data['uang'] | number:'1.0-0'}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="EditData(data)">
+          Edit
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="delete(data)">
+          Delete
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+</ion-content>
+
+<ion-footer>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-padding tableContent total-footer">
+      <ion-col size="1"></ion-col>
+      <ion-col></ion-col>
+      <ion-col class="ion-text-right">Rp. {{total | number:'1.0-0'}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center copyright" style="font-family: cursive;">&copy;copyright Ari darmawan 2021</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
