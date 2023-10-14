@@ -44,23 +44,23 @@ export class DatabaseService {
     return this.songsList.asObservable();
   }
 
-    // Render fake data
-    getFakeData() {
-      this.httpClient.get(
-        'assets/dump.sql', 
-        {responseType: 'text'}
-      ).subscribe(data => {
-        this.sqlPorter.importSqlToDb(this.storage, data)
-          .then(_ => {
-            this.getSongs();
-            this.isDbReady.next(true);
-          })
-          .catch(error => console.error(error));
-      });
-    }
+  // Render fake data
+  getFakeData() {
+    this.httpClient.get(
+      'assets/dump.sql', 
+      {responseType: 'text'}
+    ).subscribe(data => {
+      this.sqlPorter.importSqlToDb(this.storage, data)
+        .then(_ => {
+          this.getTabungan();
+          this.isDbReady.next(true);
+        })
+        .catch(error => console.error(error));
+    });
+  }
 
   // Get list
-  getSongs(){
+  getTabungan(){
     return this.storage.executeSql('SELECT * FROM tabunganTable', []).then(res => {
       let items: SongService[] = [];
       if (res.rows.length > 0) {
@@ -78,13 +78,13 @@ export class DatabaseService {
   }
 
   // Add
-  addSong(nama, uang, tanggal) {
+  CreateTabungan(nama, uang, tanggal) {
     let addTabungan: object = []
     let data = [nama, uang, tanggal];
     return this.storage.executeSql('INSERT INTO tabunganTable (nama, uang, tanggal) VALUES (?, ?, ?)', data)
     .then(res => {
       messageCenter.runCallback('addTabungan', 'Y')
-      this.getSongs();
+      this.getTabungan();
     })
     .catch(er =>{
       messageCenter.runCallback('addTabungan', 'N')
@@ -92,7 +92,7 @@ export class DatabaseService {
   }
  
   // Get single object
-  getSong(id): Promise<SongService> {
+  getTabunganByID(id): Promise<SongService> {
     return this.storage.executeSql('SELECT * FROM tabunganTable WHERE id = ?', [id]).then(res => { 
       return {
         id: res.rows.item(0).id,
@@ -103,7 +103,7 @@ export class DatabaseService {
     });
   }
 
-  getSelectName(nama: string, stardate: string, enddate:string){
+  getTabunganByName(nama: string, stardate: string, enddate:string){
     console.log(nama,stardate,enddate)
     let items = [];
     if(nama != "ALL"){
@@ -132,23 +132,22 @@ export class DatabaseService {
               });
            }
           }
-          console.log(items)
           return items;
         })
     }
   }
 
   // Update
-  updateSong(id, nama, uang, tanggal) {
+  UpdateTabungan(id, nama, uang, tanggal) {
     let data = [nama, uang, tanggal];
     return this.storage.executeSql(`UPDATE tabunganTable SET nama = ?, uang = ?, tanggal = ? WHERE id = ${id}`, data)
     .then(data => {
-      this.getSongs();
+      this.getTabungan();
     })
   }
 
   // Delete
-  deleteSong(id) {
+  deleteTabungan(id) {
     return this.storage.executeSql('DELETE FROM tabunganTable WHERE id = ?', [id])
   }
 

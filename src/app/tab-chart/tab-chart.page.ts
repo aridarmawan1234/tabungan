@@ -46,7 +46,7 @@ export class TabChartPage {
     let result = [];
     this.db.dbState().subscribe((res)=>{
       if(res){
-        this.db.getSelectName(this.NamaFilter,this.startDate.toString(),this.endDate.toString()).then(item =>{
+        this.db.getTabunganByName(this.NamaFilter,this.startDate.toString(),this.endDate.toString()).then(item =>{
           this.nama = [];
           this.uang = [];
           this.date = [];

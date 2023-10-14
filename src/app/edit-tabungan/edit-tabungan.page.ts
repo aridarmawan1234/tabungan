@@ -52,7 +52,7 @@ export class EditTabunganPage {
     price,
     this.editTabungan.value.tgl)
 
-    this.db.updateSong(
+    this.db.UpdateTabungan(
       this.data['id'],
       this.editTabungan.value.namaLengkap,
       price,

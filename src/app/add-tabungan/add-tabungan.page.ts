@@ -62,12 +62,7 @@ export class AddTabunganPage {
 
  async send(){
     let price = tools.thousandUnformat(this.tabungan.value.uang);
-    this.db.addSong(
-      this.tabungan.value.nama,
-      price,
-      this.tabungan.value.tgl
-    )
-    console.log(
+    this.db.CreateTabungan(
       this.tabungan.value.nama,
       price,
       this.tabungan.value.tgl

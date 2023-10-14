@@ -29,7 +29,6 @@ export class TabProfilPage{
     this.db.dbState().subscribe((res)=>{
       if(res){
         this.db.fetchDisplay().subscribe(item =>{
-          console.log(item)
          let data = Object.assign(item);
          var result = [];
          for(var items of data){
@@ -57,10 +56,11 @@ export class TabProfilPage{
       }
     });
   }
+
   changeDarkMode(value){
     let dark = value ? false : true;
-    console.log(dark)
     this.global.setTheme(dark)
     this.storage.set('theme', dark)
   }
+
 }

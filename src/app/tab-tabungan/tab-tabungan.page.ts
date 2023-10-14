@@ -58,7 +58,7 @@ export class TabTabunganPage{
       if(res){
         this.total = 0;
         console.log(this.startDate, this.endDate)
-        this.db.getSelectName(this.NamaFilter,this.startDate.toString(),this.endDate.toString()).then(res =>{
+        this.db.getTabunganByName(this.NamaFilter,this.startDate.toString(),this.endDate.toString()).then(res =>{
           console.log(res)
           data = Object.assign(res);
           for(let i=0; i<data.length; i++){
@@ -134,7 +134,7 @@ async EditData(data){
           console.log([
 
             ])
-            this.db.deleteSong(data.id);
+            this.db.deleteTabungan(data.id);
             this.requestDb();
         }
       }, {
