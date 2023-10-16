@@ -1,7 +1,8 @@
 {
   "name": "tabungan",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
